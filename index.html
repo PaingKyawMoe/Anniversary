@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alfa+Slab+One&family=Anton&family=Archivo+Black&family=Archivo:ital,wght@0,100..900;1,100..900&family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Coral+Pixels&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lexend+Deca:wght@100..900&family=National+Park:wght@200..800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Special+Gothic+Condensed+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .heart {
+        position: absolute;
+        color: red;
+        font-size: 24px;
+        animation: fall linear;
+      }
+
+      @keyframes fall {
+        0% {
+          top: -30px;
+          opacity: 1;
+        }
+        100% {
+          top: 100vh;
+          opacity: 0;
+        }
+      }
+      h1 {
+        text-align: center;
+        position: relative;
+        top: 230px;
+        font-family: "Lexend Deca", sans-serif;
+        font-optical-sizing: auto;
+        color: rgb(255, 0, 149);
+        text-shadow: 5px 5px 5px rgb(20, 217, 252);
+      }
+      button {
+        display: flex;
+        margin: auto;
+        padding: 10px;
+        position: relative;
+        top: 90px;
+        border-radius: 12px;
+        box-shadow: 5px 5px 10px black;
+      }
+      button:hover {
+        background-color: rgba(247, 45, 162, 0.849);
+      }
+      .btn a {
+        text-decoration: none;
+        font-size: 20px;
+      }
+      .btn a:hover {
+        color: white;
+      }
+
+      img {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        left: 253px;
+        top: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Happy Anniversary Bae❤️</h1>
+    <div class="img">
+      <img src="anni/chittl.gif" alt="" />
+    </div>
+    <div class="btn">
+      <button>
+        <span><a href="gallery.html">Love You</a></span>
+      </button>
+    </div>
+
+    <script>
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "❤️";
+
+        const size = Math.random() * 20 + 20;
+        heart.style.fontSize = size + "px";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+
+      setInterval(createHeart, 300);
+    </script>
+  </body>
+</html>

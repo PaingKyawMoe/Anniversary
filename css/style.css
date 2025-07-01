@@ -1,0 +1,476 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0; /* Reset margin for all elements for consistency */
+    padding: 0; /* Reset padding for all elements */
+}
+
+body {
+    /* margin: 0; Already set by * selector */
+    font-family: "Segoe UI", sans-serif; /* A common font from the pages */
+    background: #fff; /* Default background */
+    transition: opacity 1s ease-in-out; /* For page fade-in */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Utility classes for animations */
+.fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+.slide-in-top {
+    animation: slideInFromTop 0.7s ease-out forwards;
+}
+
+.slide-in-left {
+    animation: slideInFromLeft 0.7s ease-out forwards;
+}
+
+.slide-in-right {
+    animation: slideInFromRight 0.7s ease-out forwards;
+}
+
+
+/* Styles from index.html */
+.index-body {
+    overflow-x: hidden; /* Allow vertical scroll, hide horizontal */
+    background: #ffffff;
+    display: flex; /* Use flexbox for centering content */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.index-heart {
+    position: absolute;
+    color: red;
+    font-size: 24px; /* Base size, JS will modify */
+    animation: fall linear;
+    /* animation-duration will be set by JS */
+    pointer-events: none; /* Hearts should not interfere with clicks */
+}
+
+@keyframes fall {
+    0% {
+        top: -30px;
+        opacity: 1;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+.index-h1 {
+    text-align: center;
+    /* position: relative; No longer needed with flex centering */
+    /* top: 230px; Will use margin instead */
+    margin-top: 20px; /* Spacing from top or previous element */
+    margin-bottom: 30px; /* Space before image */
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+    color: rgb(255, 0, 149);
+    text-shadow: 5px 5px 5px rgb(20, 217, 252);
+    font-size: 2.5em; /* Base font size */
+}
+
+.index-button-container { /* Added a container for the button for better margin control */
+    margin-top: 30px; /* Space after image */
+}
+
+.index-button {
+    display: flex; /* Keeps content centered in button */
+    margin-left: auto; /* Auto margins for centering if parent is not flex */
+    margin-right: auto;
+    padding: 12px 25px; /* Slightly larger padding */
+    /* position: relative; No longer needed */
+    /* top: 90px; Will use margin on container */
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px black;
+    background-color: #fff; /* Default */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.index-button:hover {
+    background-color: rgba(247, 45, 162, 0.849);
+    transform: scale(1.05); /* Add slight scale on hover */
+}
+
+.index-button span a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #333; /* Default link color */
+    transition: color 0.3s ease;
+}
+
+.index-button:hover span a {
+    color: white;
+}
+
+.index-img-container {
+    display: flex;
+    justify-content: center;
+    /* position: relative; No longer needed */
+    /* top: 70px; Will use margin */
+    margin-bottom: 20px; /* Space before button */
+}
+
+.index-img-container img {
+    width: 150px;
+    height: 150px;
+    max-width: 100%; /* Ensure it shrinks if container is smaller */
+    object-fit: cover; /* In case aspect ratio is different */
+}
+
+/* Styles from gallery.html */
+.gallery-body {
+    background: linear-gradient(135deg, #ffd1dc, #ffe6f2);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex; /* Keep for centering container */
+    justify-content: center;
+    align-items: center; /* Vertically center if content is less than vh */
+    font-family: "Segoe UI", sans-serif;
+    position: relative; /* For heart animations */
+    padding: 20px; /* Padding for the body */
+}
+
+/* Floating hearts for gallery */
+.gallery-heart {
+    position: absolute;
+    width: 20px; /* Base size, JS can modify */
+    height: 20px; /* Base size, JS can modify */
+    background: red;
+    transform: rotate(45deg);
+    animation: floatUp 10s linear infinite;
+    opacity: 0.6; /* Base opacity, JS can modify */
+    pointer-events: none; /* Hearts should not interfere with clicks */
+}
+
+.gallery-heart::before,
+.gallery-heart::after {
+    content: "";
+    position: absolute;
+    width: 100%; /* Use percentage to scale with parent */
+    height: 100%;/* Use percentage to scale with parent */
+    background: red;
+    border-radius: 50%;
+}
+
+.gallery-heart::before {
+    top: -50%; /* Adjust based on parent size */
+    left: 0;
+}
+
+.gallery-heart::after {
+    left: -50%; /* Adjust based on parent size */
+    top: 0;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.gallery-container {
+    margin: 0 auto; /* Centering the container */
+    width: 100%; /* Take full width of padded body */
+    max-width: 1140px;
+    text-align: center;
+    padding: 20px 0; /* Padding inside container */
+}
+
+.gallery-h1 {
+    margin: 20px 0 30px 0;
+    font-family: "Oswald", sans-serif;
+    font-size: clamp(24px, 5vw, 40px); /* Responsive font size */
+    text-transform: uppercase;
+    color: #424242;
+}
+
+.gallery-h1 a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.gallery-h1 a:hover {
+    color: #ff69b4;
+}
+
+.gallery-wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 300px; /* Minimum height for the gallery */
+    height: 50vh; /* Relative to viewport height */
+    max-height: 400px; /* Max height */
+    margin-bottom: 30px; /* Space before audio */
+}
+
+.gallery-item {
+    flex: 1;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: flex 0.8s ease, filter 0.3s ease;
+    cursor: pointer;
+    filter: brightness(100%);
+    border: 2px solid transparent; /* For potential outline effect */
+}
+
+.gallery-item:hover {
+    flex: 7;
+    filter: brightness(110%);
+    border-color: #fff; /* Example hover border */
+}
+
+/* Corrected paths for background images */
+.item-1 { background-image: url(../anni/cp1.jpg); }
+.item-2 { background-image: url(../anni/cp2.jpg); }
+.item-3 { background-image: url(../anni/cp3.jpg); }
+.item-4 { background-image: url(../anni/cp4.jpg); }
+.item-5 { background-image: url(../anni/cp2.jpg); } /* Assuming this is intentional duplicate */
+.item-6 { background-image: url(../anni/cp1.jpg); } /* Assuming this is intentional duplicate */
+
+
+.gallery-audio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.gallery-audio audio {
+    width: 100%;
+    max-width: 500px; /* Max width for audio player */
+}
+
+/* Styles from showphoto.html */
+.showphoto-body {
+    font-family: "Segoe UI", sans-serif;
+    text-align: center;
+    background: #ffeef2;
+    color: #333;
+    padding: 20px; /* Standardized padding */
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.showphoto-h1 {
+    color: #ff69b4;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: clamp(22px, 5vw, 30px); /* Responsive font size */
+}
+
+.showphoto-button-container { /* Container for buttons */
+    margin-bottom: 30px;
+}
+
+.showphoto-button {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    padding: 12px 25px; /* Adjusted padding */
+    font-size: 1em; /* Base font size */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin: 5px 10px; /* Spacing between buttons */
+}
+
+.showphoto-button:hover {
+    background: #ff1493;
+    transform: scale(1.05);
+}
+
+.showphoto-button a {
+    text-decoration: none;
+    color: white;
+}
+
+#image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Slightly reduced gap */
+    margin-top: 20px; /* Reduced margin */
+}
+
+#image-container img {
+    max-width: 180px; /* Slightly reduced max-width */
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Styles from video.html */
+.video-body {
+    background: #f8f8f8;
+    text-align: center;
+    padding: 20px; /* Standardized padding */
+    font-family: sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-h1 {
+    color: rgb(255, 0, 149);
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: clamp(22px, 5vw, 30px); /* Responsive font size */
+}
+
+.video-element {
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 700px; /* Slightly increased max-width */
+    height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) { /* Tablet and larger phones */
+    .index-h1 {
+        /* top: 100px; Removed, using flexbox and margins */
+        font-size: clamp(1.8em, 6vw, 2.2em); /* Responsive font size for index */
+        margin-top: 10vh; /* More dynamic top margin */
+        margin-bottom: 5vh;
+    }
+    .index-img-container img {
+        width: 120px; /* Slightly larger base for tablet */
+        height: 120px;
+    }
+    .index-button-container {
+        margin-top: 5vh;
+    }
+    .index-button {
+        /* top: 50px; Removed */
+        padding: 10px 20px;
+    }
+    .index-button span a {
+        font-size: 18px;
+    }
+
+
+    .gallery-h1 {
+        /* font-size: 30px; Handled by clamp */
+    }
+    .gallery-wrap {
+        height: auto;
+        flex-direction: column;
+        min-height: initial; /* Reset min-height */
+        max-height: none; /* Allow it to grow */
+    }
+    .gallery-item {
+        min-height: 250px; /* Taller items when stacked */
+        margin-bottom: 15px;
+        flex-basis: 250px; /* Ensure items have a base height */
+    }
+    .gallery-item:hover {
+        flex-grow: 0; /* Disable grow on hover for stacked items */
+        flex-shrink: 0;
+        filter: brightness(105%); /* Less pronounced hover effect */
+    }
+
+    .showphoto-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    #image-container img {
+        max-width: 140px;
+    }
+    #image-container {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) { /* Smaller mobile phones */
+    .index-h1 {
+        /* top: 80px; Removed */
+        font-size: clamp(1.5em, 7vw, 1.8em); /* Further adjust for small screens */
+        margin-top: 15vh;
+        margin-bottom: 5vh;
+    }
+    .index-img-container img {
+        width: 100px;
+        height: 100px;
+    }
+    .index-button {
+        padding: 10px 15px; /* Smaller padding */
+    }
+    .index-button span a {
+        font-size: 16px; /* Smaller font */
+    }
+
+    .gallery-h1 {
+        /* font-size: 24px; Handled by clamp */
+        margin-bottom: 20px;
+    }
+    .gallery-item {
+        min-height: 200px;
+        flex-basis: 200px;
+    }
+    .gallery-audio audio {
+        max-width: 90%;
+    }
+
+    .showphoto-h1 {
+        /* font-size: 1.5em; Handled by clamp */
+    }
+    .showphoto-button {
+        padding: 8px 12px;
+        font-size: 0.8em;
+        margin: 5px;
+    }
+    #image-container img {
+        max-width: calc(50% - 10px); /* Two images per row on small screens */
+    }
+    #image-container {
+        gap: 10px; /* Ensure gap is accounted for */
+    }
+
+    .video-h1 {
+        /* font-size: 1.5em; Handled by clamp */
+    }
+    .video-element {
+        max-width: 100%; /* Full width on small screens */
+    }
+}

@@ -4,160 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        background: linear-gradient(135deg, #ffd1dc, #ffe6f2);
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Segoe UI", sans-serif;
-        position: relative;
-      }
-
-      /* Floating hearts */
-      .heart {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background: red;
-        transform: rotate(45deg);
-        animation: floatUp 10s linear infinite;
-        opacity: 0.6;
-      }
-
-      .heart::before,
-      .heart::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background: red;
-        border-radius: 50%;
-      }
-
-      .heart::before {
-        top: -10px;
-        left: 0;
-      }
-
-      .heart::after {
-        left: -10px;
-        top: 0;
-      }
-
-      @keyframes floatUp {
-        0% {
-          transform: translateY(100vh) rotate(45deg);
-          opacity: 0.6;
-        }
-        100% {
-          transform: translateY(-10vh) rotate(45deg);
-          opacity: 0;
-        }
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      html,
-      .container {
-        padding: 25px 0;
-        margin: -62px auto;
-        width: 1140px;
-      }
-
-      h1 {
-        position: relative;
-        margin: 10px;
-        font-family: "Oswald", sans-serif;
-        font-size: 40px;
-        text-transform: uppercase;
-        color: #424242;
-      }
-
-      .gallery-wrap {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 50vh;
-      }
-
-      .item {
-        flex: 1;
-        height: 100%;
-        background-position: center;
-        background-size: cover;
-        background-repeat: none;
-        transition: flex 0.8s ease;
-        cursor: pointer;
-        &:hover {
-          flex: 7;
-        }
-      }
-
-      .item-1 {
-        background-image: url(anni/cp1.jpg);
-      }
-
-      .item-2 {
-        background-image: url(anni/cp2.jpg);
-      }
-
-      .item-3 {
-        background-image: url(anni/cp3.jpg);
-      }
-
-      .item-4 {
-        background-image: url(anni/cp4.jpg);
-      }
-
-      .item-5 {
-        background-image: url(anni/cp2.jpg);
-      }
-      .item-6 {
-        background-image: url(anni/cp1.jpg);
-      }
-
-      .audio {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-      }
-      h1 a {
-        text-decoration: none;
-      }
-      a:hover {
-        color: rgb(255, 255, 255);
-      }
-    </style>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Segoe+UI&display=swap" rel="stylesheet">
   </head>
-  <body>
-    <div class="container">
-      <h1><a href="showphoto.html">Anniversary Gallery</a></h1>
-      <div class="gallery-wrap">
-        <div class="item item-1"></div>
-        <div class="item item-2"></div>
-        <div class="item item-3"></div>
-        <div class="item item-4"></div>
-        <div class="item item-5"></div>
-        <div class="item item-6"></div>
+  <body class="gallery-body">
+    <div class="gallery-container">
+      <h1 class="gallery-h1 slide-in-top"><a href="showphoto.html">Anniversary Gallery</a></h1>
+      <div class="gallery-wrap fade-in">
+        <div class="gallery-item item-1"></div>
+        <div class="gallery-item item-2"></div>
+        <div class="gallery-item item-3"></div>
+        <div class="gallery-item item-4"></div>
+        <div class="gallery-item item-5"></div>
+        <div class="gallery-item item-6"></div>
       </div>
-      <div class="audio">
+      <div class="gallery-audio fade-in">
         <audio
           controls
           autoplay
@@ -169,11 +32,15 @@
       // Create floating hearts
       for (let i = 0; i < 30; i++) {
         const heart = document.createElement("div");
-        heart.classList.add("heart");
+        heart.classList.add("gallery-heart"); // Use specific class from style.css
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = 5 + Math.random() * 5 + "s";
-        heart.style.opacity = Math.random();
-        heart.style.width = heart.style.height = 10 + Math.random() * 20 + "px";
+        // Adjust animation duration/delay for variety if desired in JS, or use CSS nth-child for variation
+        heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+        heart.style.opacity = Math.random() * 0.5 + 0.3; // Ensure hearts are not too opaque or too transparent
+        const size = 10 + Math.random() * 20;
+        heart.style.width = size + "px";
+        heart.style.height = size + "px";
+        // For pseudo-elements to scale with heart size, their dimensions might need JS adjustment or use 'em' units
         document.body.appendChild(heart);
       }
     </script>
